@@ -1,6 +1,6 @@
 {
   "hosting": {
-    "public": "dist",
+    "public": "dist/sdg-challenge-audience-site/browser",
     "ignore": [
       "firebase.json",
       "**/.*",
