@@ -66,3 +66,5 @@ aio/node_modules
 aio/out-tsc
 
 /.vscode/
+
+.firebase/
