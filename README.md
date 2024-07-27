@@ -6,7 +6,7 @@ The project is now on [Angular CLI](https://github.com/angular/angular-cli) vers
 You will also need [Firebase CLI](https://firebase.google.com/docs/cli) to publish and test the site. 
 
 ## Table of Contents
-- [Anuglar commands](#angular)
+- [Angular commands](#angular)
 - [Firebase commands](#firebase)
 - [Contributing](#contributing)
 
