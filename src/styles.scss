@@ -1,15 +1,13 @@
+// Angular Material setup
 @use '@angular/material' as mat;
-@use '../src/styles/m3-theme.scss';
-
 @include mat.core();
 
-:root {
-  @include mat.all-component-themes(m3-theme.$light-theme);
-  @include mat.all-component-typographies(m3-theme.$light-theme);
+// Import global styles
+@import "styles/layout";
+@import "styles/theming";
+@import "styles/custom-properties";
+@import "styles/responsive";
 
-  @include mat.system-level-colors(m3-theme.$light-theme);
-  @include mat.system-level-typography(m3-theme.$light-theme);
-}
 
-body { margin: 0; font-family: "Open Sans", "Helvetica Neue", sans-serif; }
+
 

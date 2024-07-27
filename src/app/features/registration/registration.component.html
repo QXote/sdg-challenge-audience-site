@@ -1,0 +1,112 @@
+<div class="flex-start-container">
+  <div class="flex-column-center form-fields-width">
+    <mat-button-toggle-group>
+      <mat-button-toggle value="New Registration">New Registration</mat-button-toggle>
+      <mat-button-toggle value="Existing Registration">I already registered</mat-button-toggle>
+    </mat-button-toggle-group>
+  </div>
+  <form #form="ngForm"
+        (ngSubmit)="onSubmitForm(form)"
+        class="flex-column-center">
+    <mat-form-field class="form-fields-width"
+                    appearance="outline">
+      <mat-label>First name</mat-label>
+      <input matInput
+             [(ngModel)]="registration.firstName"
+             name="firstName"
+             required
+             minlength="2"
+             #firstName="ngModel">
+      @if (firstName.touched && firstName.getError('required')) {
+        <mat-error>First name is required!</mat-error>
+      } @else if (firstName.dirty && firstName.getError('minlength')) {
+        <mat-error>This field needs {{ firstName.getError('minlength').requiredLength }} or more characters!</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field class="form-fields-width"
+                    appearance="outline">
+      <mat-label>Last name</mat-label>
+      <input matInput
+             [(ngModel)]="registration.lastName"
+             name="lastName"
+             required
+             minlength="2"
+             #lastname="ngModel">
+      @if (lastname.touched && lastname.getError('required')) {
+        <mat-error>Last name is required!</mat-error>
+      } @else if (lastname.dirty && lastname.getError('minlength')) {
+        <mat-error>This field needs {{ lastname.getError('minlength').requiredLength }} or more characters!</mat-error>
+      }
+    </mat-form-field>
+    <mat-form-field class="form-fields-width"
+                    appearance="outline">
+      <mat-label>E-mail</mat-label>
+      <input matInput
+             [(ngModel)]="registration.email"
+             name="email"
+             email
+             required
+             #email="ngModel">
+      @if (email.touched && email.getError('required')) {
+        <mat-error>E-mail is required!</mat-error>
+      } @else if (email.dirty && email.getError('email')) {
+        <mat-error>Please enter a valid e-mail!</mat-error>
+      }
+    </mat-form-field>
+    <mat-divider></mat-divider>
+    <mat-radio-group
+      class="flex-column-align-left form-fields-width"
+      [(ngModel)]="registrationType"
+      [ngModelOptions]="{standalone: true}">
+      <mat-radio-button value="1">I'm here on behalf of an organization</mat-radio-button>
+      <mat-radio-button value="2">I'm here as a student</mat-radio-button>
+      <mat-radio-button value="3">Neither</mat-radio-button>
+    </mat-radio-group>
+    @if (registrationType == 1 || registrationType == 2) {
+      <mat-form-field class="form-fields-width"
+                      appearance="outline">
+        <mat-label>Organization Name</mat-label>
+        <input matInput
+               [(ngModel)]="registration.organization"
+               name="organization"
+               required
+               #organization="ngModel">
+        @if (organization.touched && organization.getError('required')) {
+          <mat-error>Organization is required!</mat-error>
+        }
+      </mat-form-field>
+    }
+    @if (registrationType == 1) {
+      <mat-form-field class="form-fields-width"
+                      appearance="outline">
+        <mat-label>Role at organization</mat-label>
+        <input matInput
+               [(ngModel)]="registration.role"
+               name="role"
+               required
+               #role="ngModel">
+        @if (role.touched && role.getError('required')) {
+          <mat-error>Organization is required!</mat-error>
+        }
+      </mat-form-field>
+    }
+    <mat-divider></mat-divider>
+    <div class="flex-column-align-left form-fields-width">
+      <mat-checkbox [(ngModel)]="registration.newsletterConsent"
+                    name="newsletterConsent">
+        Yes, I would like to receive the QXote newsletter
+      </mat-checkbox>
+      <mat-checkbox [(ngModel)]="registration.pictureConsent"
+                    name="pictureConsent">
+        I consent to having my picture taken and for it to be used for social media purposes
+      </mat-checkbox>
+    </div>
+    <button mat-raised-button
+            class="sdg-button"
+            >
+      Submit
+    </button>
+  </form>
+</div>
+
+

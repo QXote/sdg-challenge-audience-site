@@ -1,0 +1,57 @@
+@mixin fixed-position($z-index: 1000) {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  z-index: $z-index;
+}
+
+@mixin flex-container($direction: row, $justify: flex-start, $align: center, $wrap: nowrap) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  flex-wrap: $wrap;
+}
+
+@mixin flex-item($grow: 0, $shrink: 1, $basis: auto) {
+  flex: $grow $shrink $basis;
+}
+
+// Reusable classes for common layouts
+.flex-column-align-left {
+  @include flex-container(column, flex-start, flex-start);
+}
+
+.flex-column-center {
+  @include flex-container(column, center, center);
+}
+
+.top-level-container {
+  margin: 64px 16px;
+  height: calc(100vh - 128px);
+  width: calc(100vw - 32px);
+  overflow-y: auto;
+}
+
+.flex-start-container {
+  @include flex-container(column, flex-start);
+  height: 100%;
+  width: calc(100% - 1px);
+}
+
+.flex-center-container {
+  @include flex-container(column, center);
+  height: 100%;
+  width: calc(100% - 1px);
+}
+
+.header {
+  top: 0;
+  @include fixed-position;
+}
+
+.footer {
+  bottom: 0;
+  @include fixed-position;
+  @include flex-container(row, center);
+}

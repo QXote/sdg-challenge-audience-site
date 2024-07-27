@@ -1,0 +1,57 @@
+@use '@angular/material' as mat;
+
+@include mat.core();
+
+// Custom theme
+$sdg-challenge-theme: mat.define-theme(
+    (
+      color: (
+        theme-type: light,
+        use-system-variables: true,
+      ),
+      typography: (
+        use-system-variables: true,
+      ),
+      density: (
+        scale: 0,
+      ),
+    )
+);
+
+:root {
+  @include mat.all-component-themes($sdg-challenge-theme);
+  @include mat.all-component-typographies($sdg-challenge-theme);
+
+  @include mat.system-level-colors($sdg-challenge-theme);
+  @include mat.system-level-typography($sdg-challenge-theme);
+}
+
+// Global font styles
+body {
+  margin: 0; font-family: "Open Sans", "Helvetica Neue", sans-serif;
+}
+
+// Global styles for Angular material components
+.form-fields-width {
+  width: 100%;
+  max-width: 600px;
+}
+
+mat-button-toggle-group {
+  width: 100%;
+  max-width: 600px;
+  margin: 16px 0 16px 0;
+}
+
+mat-button-toggle {
+  width: 50%;
+}
+
+mat-divider {
+  width: 100%;
+}
+
+.sdg-button {
+  margin: 8px 0;
+  background-color: var(--sys-custom-button-color);
+}
