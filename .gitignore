@@ -68,3 +68,8 @@ aio/out-tsc
 /.vscode/
 
 .firebase/
+
+# Firebase
+.firebase
+*-debug.log
+.runtimeconfig.json
