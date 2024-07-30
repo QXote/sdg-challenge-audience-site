@@ -1,1 +1,31 @@
-<p>landing-page works!</p>
+<div class="flex-center-container">
+  <div class="flex-column-center">
+    <img src="assets/images/sdg_logo.png"
+         class="large-image"
+         alt="SDG logo">
+    <p>Made possible by: </p>
+    <div class="flex-row-space-evenly">
+      <img src="assets/images/qxote_logo_centered.png"
+           class="medium-image"
+           alt="QXote logo">
+      <img src="assets/images/soapbox_logo.png"
+           class="medium-image"
+           alt="Soapbox logo">
+    </div>
+    <mat-form-field appearance="outline">
+      <mat-label>Language</mat-label>
+      <mat-select required>
+        <mat-option value="en-us">English</mat-option>
+        <mat-option value="pt-pt">Português</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button
+            class="sdg-button">
+      New registration
+    </button>
+    <button mat-raised-button
+            class="sdg-button">
+      I have already registered
+    </button>
+  </div>
+</div>

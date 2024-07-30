@@ -1,16 +1,19 @@
-<h2>Vote count:</h2>
-<form>
-  <div class="slider-label-container">
-    <label id="slider-name-label" class="slider-name-label">Value</label>
-    <label class="example-value-label">{{vote1}}</label>
-  </div>
-  <mat-slider
-    class="example-margin"
-    [max]="10"
-    [min]="1"
-    [step]="1"
-    [discrete]="true"
-    [showTickMarks]="true">
-    <input matSliderThumb [(ngModel)]="vote1">
-  </mat-slider>
-</form>
+<div class="flex-start-container">
+  <h2>Vote count:</h2>
+  <form class="flex-column-center form-fields-width">
+    <div class="flex-row-space-evenly slider-label-spacing form-fields-width">
+      <label id="slider-name-label" class="slider-name-label">Value</label>
+      <label class="example-value-label">{{vote1}}</label>
+    </div>
+    <mat-slider
+      class="example-margin form-fields-width"
+      [max]="10"
+      [min]="1"
+      [step]="1"
+      [discrete]="true"
+      [showTickMarks]="true">
+      <input matSliderThumb [(ngModel)]="vote1" [ngModelOptions]="{standalone: true}">
+    </mat-slider>
+  </form>
+</div>
+

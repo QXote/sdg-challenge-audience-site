@@ -18,19 +18,6 @@
 }
 
 // Reusable classes for common layouts
-.flex-column-align-left {
-  @include flex-container(column, flex-start, flex-start);
-}
-
-.flex-column-center {
-  @include flex-container(column, center, center);
-}
-
-.flex-column-center-onscreen {
-  @include flex-container(column, center, center);
-  height: 100%;
-}
-
 .top-level-container {
   margin: 64px 16px;
   height: calc(100vh - 128px);
@@ -38,6 +25,7 @@
   overflow-y: auto;
 }
 
+// Containers to fit in the top-level container
 .flex-start-container {
   @include flex-container(column, flex-start);
   height: 100%;
@@ -50,6 +38,22 @@
   width: calc(100% - 1px);
 }
 
+
+// Flexbox classes to align items
+.flex-column-align-left {
+  @include flex-container(column, flex-start, flex-start);
+}
+
+
+.flex-column-center {
+  @include flex-container(column, center, center);
+}
+
+.flex-row-space-evenly {
+  @include flex-container(row, space-evenly, center);
+}
+
+// Fixed header and footer
 .header {
   top: 0;
   @include fixed-position;
@@ -59,4 +63,16 @@
   bottom: 0;
   @include fixed-position;
   @include flex-container(row, center);
+}
+
+// Images
+.large-image {
+  width: 100%;
+  max-width: 250px;
+}
+
+.medium-image {
+  width: 100%;
+  max-width: 150px;
+  margin-bottom: 16px;
 }

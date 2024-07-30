@@ -113,7 +113,7 @@
   } @else if (registrationStatus == "Existing") {
     <form #existingForm="ngForm"
           (ngSubmit)="onSubmitExistingForm(existingForm)"
-          class="flex-column-center-onscreen form-fields-width">
+          class="flex-center-container form-fields-width">
       <mat-form-field class="form-fields-width"
                       appearance="outline">
         <mat-label>E-mail</mat-label>
@@ -123,6 +123,7 @@
                email
                required
                #email="ngModel">
+        <mat-hint>Fill in your e-mail if you have already registered.</mat-hint>
         @if (email.touched && email.getError('required')) {
           <mat-error>E-mail is required!</mat-error>
         } @else if (email.dirty && email.getError('email')) {
