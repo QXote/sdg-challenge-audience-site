@@ -38,7 +38,7 @@ body {
 }
 
 mat-button-toggle-group {
-  width: 100%;
+  width: calc(100% - 1px);
   max-width: 600px;
   margin: 16px 0 16px 0;
 }
@@ -54,4 +54,22 @@ mat-divider {
 .sdg-button {
   margin: 8px 0;
   background-color: var(--sys-custom-button-color);
+}
+
+// Make sure snackbars are not covering the bottom navigation
+.cdk-overlay-pane {
+  margin-bottom: 64px !important;
+}
+
+.mat-mdc-snack-bar-container {
+  &.success-snackbar {
+    --mdc-snackbar-container-color: var(--sys-secondary-container);
+    --mat-mdc-snack-bar-button-color: var(--sys-on-secondary-container);
+    --mdc-snackbar-supporting-text-color: var(--sys-on-secondary-container);
+  }
+  &.error-snackbar {
+    --mdc-snackbar-container-color: var(--sys-error-container);
+    --mat-mdc-snack-bar-button-color: var(--sys-on-error-container);
+    --mdc-snackbar-supporting-text-color: var(--sys-on-error-container);
+  }
 }

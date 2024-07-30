@@ -26,6 +26,11 @@
   @include flex-container(column, center, center);
 }
 
+.flex-column-center-onscreen {
+  @include flex-container(column, center, center);
+  height: 100%;
+}
+
 .top-level-container {
   margin: 64px 16px;
   height: calc(100vh - 128px);
