@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>Enter Access Code</h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <mat-label>Access Code</mat-label>
+    <input matInput [(ngModel)]="accessCode" />
+  </mat-form-field>
+</div>
+<div mat-dialog-actions>
+<!--  <button mat-raised-button color="primary" (click)="verifyAccessCode(this.accessCode)">Submit</button>-->
+  <button mat-raised-button color="primary" [mat-dialog-close]>Cancel</button>
+</div>

@@ -1,0 +1,39 @@
+<div class="flex-center-container">
+  @if (loading) {
+  <div class="flex-column-center">
+    <mat-spinner diameter="50"></mat-spinner>
+    <h2>Loading...</h2>
+  </div>
+  } @else {
+  <div class="flex-column-center">
+    <h2>Manage {{ sessionKey }}</h2>
+    <h3>Number of registered people: {{ this.registrationsCount$ | async }}</h3>
+    <h3>Number of votes: {{ this.votesCount$ | async }}</h3>
+    @if (!sessionStarted) {
+      <button mat-raised-button
+              class="sdg-button"
+              (click)="startSession()">
+        Start voting session
+      </button>
+    } @else {
+      <button mat-raised-button
+              class="sdg-button"
+              (click)="endSession()">
+        End voting session
+      </button>
+    }
+    <button mat-raised-button
+            class="sdg-button">
+      Download session results as .XLSX
+    </button>
+    <mat-divider style="margin: 12px"></mat-divider>
+    <div class="flex-column-center">
+      <button mat-raised-button
+              color="warn"
+              (click)="newSessionDialog()">
+        Start entirely new session
+      </button>
+    </div>
+  </div>
+  }
+</div>

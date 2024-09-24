@@ -1,5 +1,23 @@
 <app-header></app-header>
-<div class="top-level-container">
-  <router-outlet />
-</div>
-<app-footer></app-footer>
+@if (showHeader) {
+  <nav mat-tab-nav-bar
+       [tabPanel]="tabPanel">
+    @for (link of navLinks; track link) {
+      <a mat-tab-link
+         [routerLink]="link.link"
+         routerLinkActive
+         #rla="routerLinkActive"
+         [active]="rla.isActive">
+      <span>
+        <mat-icon fontIcon="{{link.icon}}"></mat-icon>
+      </span>
+        {{ link.label }}
+      </a>
+    }
+  </nav>
+}
+<mat-tab-nav-panel #tabPanel>
+  <div [@routeAnimations]="prepareRoute()">
+    <router-outlet></router-outlet>
+  </div>
+</mat-tab-nav-panel>

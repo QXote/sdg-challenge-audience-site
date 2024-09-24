@@ -73,3 +73,6 @@ aio/out-tsc
 .firebase
 *-debug.log
 .runtimeconfig.json
+
+# Environment variables
+.env

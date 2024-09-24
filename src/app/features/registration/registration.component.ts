@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {FormsModule, NgForm} from "@angular/forms";
 import {Router} from "@angular/router";
 import {MatDivider} from "@angular/material/divider";
@@ -13,6 +13,7 @@ import {ErrorSnackbarComponent} from "../../shared/components/error-snackbar/err
 import {SuccessSnackbarComponent} from "../../shared/components/success-snackbar/success-snackbar.component";
 import {RegistrationService} from "../../shared/services/registration.service";
 import {Registration} from "../../shared/interfaces/registration";
+import {SessionService} from "../../shared/services/session.service";
 
 @Component({
   selector: 'app-registration',
@@ -34,12 +35,14 @@ import {Registration} from "../../shared/interfaces/registration";
   templateUrl: './registration.component.html',
   styleUrl: './registration.component.scss'
 })
-export class RegistrationComponent {
-  constructor(
-    private _snackBar: MatSnackBar,
-    private _router: Router,
-    private _registrationService: RegistrationService
-  ) { }
+export class RegistrationComponent implements OnInit {
+
+  private _snackBar = inject(MatSnackBar);
+  private _router = inject(Router);
+  private _registrationService = inject(RegistrationService);
+  private _sessionService = inject(SessionService);
+
+  sessionKey: string;
 
   registrationStatus: string = 'New'
   registrationType: string = 'Neither';
@@ -53,6 +56,12 @@ export class RegistrationComponent {
     pictureConsent: false
   }
 
+  ngOnInit(): void {
+    this._sessionService.checkSession().then(({ sessionKey}) => {
+      this.sessionKey = sessionKey;
+    });
+  }
+
   onSubmitForm(form: NgForm) {
     const setRegistration: Registration = {
       firstName: form.value.firstName,
@@ -64,7 +73,7 @@ export class RegistrationComponent {
       pictureConsent: form.value.pictureConsent
     }
 
-    this._registrationService.setRegistration(setRegistration)
+    this._registrationService.setRegistration(setRegistration, this.sessionKey)
       .subscribe({
         next: () => {
           this._snackBar.openFromComponent(SuccessSnackbarComponent, {
@@ -76,7 +85,6 @@ export class RegistrationComponent {
           localStorage.setItem('email', form.value.email)
         },
         error: (error) => {
-          console.log(error);
           this._snackBar.openFromComponent(ErrorSnackbarComponent, {
             data: "Registration failed!",
             panelClass: ['error-snackbar'],
@@ -87,7 +95,7 @@ export class RegistrationComponent {
   }
 
   onSubmitExistingForm(form: NgForm) {
-    this._registrationService.checkEmailExists(form.value.email)
+    this._registrationService.checkEmailExists(form.value.email, this.sessionKey)
       .subscribe({
         next: (emailExists) => {
           if (emailExists) {

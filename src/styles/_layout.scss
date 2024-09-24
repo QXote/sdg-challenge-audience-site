@@ -13,31 +13,33 @@
   flex-wrap: $wrap;
 }
 
+@mixin fill-container {
+  width: calc(100vw - 32px);
+  // 49px is the height of the tabs
+  height: calc(100vh - 49px - var(--mat-toolbar-standard-height));
+  margin: 0 16px;
+
+  // Handle mobile height of the toolbar
+  @media (max-width: 599px) {
+   height: calc(100vh - 49px - var(--mat-toolbar-mobile-height));
+  }
+}
+
 @mixin flex-item($grow: 0, $shrink: 1, $basis: auto) {
   flex: $grow $shrink $basis;
 }
 
 // Reusable classes for common layouts
-.top-level-container {
-  margin: 64px 16px;
-  height: calc(100vh - 128px);
-  width: calc(100vw - 32px);
-  overflow-y: auto;
-}
-
-// Containers to fit in the top-level container
+// Containers that should be used as a wrapper for the entire page
 .flex-start-container {
   @include flex-container(column, flex-start);
-  height: 100%;
-  width: calc(100% - 1px);
+  @include fill-container;
 }
 
 .flex-center-container {
   @include flex-container(column, center);
-  height: 100%;
-  width: calc(100% - 1px);
+  @include fill-container;
 }
-
 
 // Flexbox classes to align items
 .flex-column-align-left {
@@ -51,18 +53,6 @@
 
 .flex-row-space-evenly {
   @include flex-container(row, space-evenly, center);
-}
-
-// Fixed header and footer
-.header {
-  top: 0;
-  @include fixed-position;
-}
-
-.footer {
-  bottom: 0;
-  @include fixed-position;
-  @include flex-container(row, center);
 }
 
 // Images
